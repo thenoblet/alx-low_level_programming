@@ -7,7 +7,6 @@
  *
  * Return: Always 1 (Success)
  *
- * By: Patrick Noblet Appiah
  * Lower level programming - 0x01. C - Variables, if, else, while
  */
 
@@ -20,17 +19,19 @@ int main(void)
 	n = rand() - RAND_MAX / 2;
 	lastdigit = n % 10;
 
+	printf("Last digit of %d is %d ", n, lastdigit);
+
 	if (lastdigit > 5)
 	{
-		printf("Last digit of %d is %d and is greater than 5\n", n, lastdigit);
+		printf("and is greater than 5\n");
 	}
 	else if (lastdigit == 0)
 	{
-		printf("Last digit of %d is %d is 0\n", n, lastdigit);
+		printf("and is 0\n");
 	}
 	else if (lastdigit < 6 && lastdigit != 0)
 	{
-		printf("Last digit of %d is %d and is less than 6 and not 0\n", n, lastdigit);
+		printf("and is less than 6 and not 0\n");
 	}
 
 	return (0);
