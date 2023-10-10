@@ -3,6 +3,8 @@
 /**
  * _islower - checks for lowercase letters
  *
+ * c: argument value
+ *
  * Return: Always 1 (Success)
  */
 
@@ -17,5 +19,5 @@ int _islower(int c)
 		return (0);
 	}
 
-	return 0;
+	return (0)i;
 }
