@@ -19,7 +19,7 @@ int main(void)
 	{
 		z = x + y;
 
-		printf("%ld", d);
+		printf("%ld", z);
 		
 		x = y;
 		y = z;
