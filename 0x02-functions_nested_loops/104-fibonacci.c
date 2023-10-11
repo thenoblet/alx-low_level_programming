@@ -17,7 +17,7 @@ void print_fibonacci_sequence(int n);
 
 int main(void)
 {
-	int n = 99;
+	int n = 98;
 
 	if (n < 1)
 	{
@@ -33,6 +33,7 @@ int main(void)
 	}
 	else
 	{
+		printf("1, 2, ");
 		print_fibonacci_sequence(n - 2);
 	}
 
@@ -55,7 +56,14 @@ void print_fibonacci_sequence(int n)
 
 	for (i = 1; i < n; i++)
 	{
-		printf("%lu, ", a);
+		if (i < n - 1)
+		{
+			printf("%lu, ", a);
+		}
+		else
+		{
+			printf("%lu\n", a);
+		}
 		tmp = a;
 		a = b;
 		b = tmp + b;
