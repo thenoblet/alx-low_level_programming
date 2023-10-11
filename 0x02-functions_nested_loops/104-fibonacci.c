@@ -56,13 +56,15 @@ void print_fibonacci_sequence(int n)
 
 	for (i = 1; i < n; i++)
 	{
+		printf("%lu", a);
+
 		if (i < n - 1)
 		{
-			printf("%lu, ", a);
+			printf(", ");
 		}
 		else
 		{
-			printf("%lu\n", a);
+			printf("\n");
 		}
 		tmp = a;
 		a = b;
