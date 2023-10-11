@@ -3,6 +3,8 @@
 /**
  * _abs - computes the absolute value of an integer
  *
+ * @x: parameter or argument
+ *
  * Return: Abs value of the number.
  */
 
