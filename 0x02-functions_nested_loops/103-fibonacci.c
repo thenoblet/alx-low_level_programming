@@ -5,30 +5,25 @@
  *
  * prints the first 50 Fibonacci numbers,
  * starting with 1 and 2
+ *
+ * Return: Always 0 (success)
  */
 
 int main(void)
 {
-	long int i, x, y , z;
-	
-	x = 1;
-	y = 2;	
+	long int x = 1, y = 2, z, sum = 2;
 
-	printf("1, 2, ");
-	for (i = 0; i < 48; i++)
+	while (1)
 	{
 		z = x + y;
-
-		printf("%ld", d);
-		
+		if (z > 4000000)
+			break;
+		if (z % 2 == 0)
+			sum += z;
 		x = y;
 		y = z;
-
-		if (i != 47)
-		{
-			printf(", ");
-		}
 	}
-	putchar('\n');
+	printf("%ld\n", sum);
+
 	return (0);
 }
