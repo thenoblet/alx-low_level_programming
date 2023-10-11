@@ -5,10 +5,10 @@
 /**
  * main - entry point
  *
+ * @n: parameter
+ *
  * Program finds and prints the first 98 Fibonacci numbers,
  * starting with 1 and 2
- * 
- * @n: parameter
  *
  * Return: Always 0 (success)
  */
@@ -39,6 +39,12 @@ int main(void)
 	return (0);
 }
 
+/**
+ * print_fibonacci_sequence - prints sequence
+ *
+ * @n: parameter
+ *
+ */
 
 void print_fibonacci_sequence(int n)
 {
