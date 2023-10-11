@@ -54,11 +54,11 @@ void print_fibonacci_sequence(int n)
 
 	int i;
 
-	for (i = 1; i < n; i++)
+	for (i = 1; i <= n; i++)
 	{
 		printf("%lu", a);
 
-		if (i < n - 1)
+		if (i < n)
 		{
 			printf(", ");
 		}
