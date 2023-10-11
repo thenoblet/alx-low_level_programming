@@ -70,6 +70,4 @@ void print_fibonacci_sequence(int n)
 		a = b;
 		b = tmp + b;
 	}
-
-	printf("%lu\n", a);
 }
