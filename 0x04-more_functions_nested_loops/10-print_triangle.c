@@ -3,6 +3,8 @@
 /**
  * print_triangle - prints a triangle
  *
+ * @size: parameter
+ *
  * Return: Void
  */
 
