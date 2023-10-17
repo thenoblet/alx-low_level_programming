@@ -10,15 +10,9 @@
 
 void puts2(char *str)
 {
-	int count = 0;
 	int i;
 
-	while (str[count] != '\0')
-	{
-		count++;
-	}
-
-	for (i = 0; i < count; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] % 2 == 0)
 		{
