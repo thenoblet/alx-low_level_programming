@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 int is_lower(char c);
 int is_upper(char c);
 int is_separator(char c);
@@ -12,7 +11,6 @@ int is_separator(char c);
  *
  * Return: pointer to a string
  */
-
 
 char *cap_string(char *str)
 {
@@ -40,10 +38,11 @@ char *cap_string(char *str)
 
 }
 
+
 /**
- * is_lower - retursn lowercase char
- * @c: parameter
- * Return: lowercase
+ * is_lower - checks for lowercase char
+ * @c: character to check
+ * Return: 1 if the character is a lowercase letter, 0 otherwise
  */
 
 int is_lower(char c)
@@ -54,8 +53,8 @@ int is_lower(char c)
 
 /**
  * is_upper - checks for uppercase
- * @c: parameter
- * Return: uppercase
+ * @c: char to check
+ * Return: 1 if the character is an uppercase letter, 0 otherwise
  */
 
 int is_upper(char c)
@@ -65,7 +64,7 @@ int is_upper(char c)
 
 
 /**
- * is_separator - checks for separators
+ * is_separator - checks for word separators
  * @c: char to be checked
  * Return: if is separator, return 1, else return 0
  */
