@@ -5,24 +5,28 @@
  *
  * @str: string to encrypt
  *
- * Return: pointer to the encrypted string @s
+ * Return: pointer to string
  */
 
 char *rot13(char *str)
 {
+	char letters[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char rot13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 	int i;
+	int j;
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		char c = str[i];
+		for (j = 0; letters[j] != '\0'; j++)
+		{
+			if (str[i] == letters[j])
+			{
+				/* Replace the character with its ROT13 counterpart */
+				str[i] = rot13[j];
 
-		if (c >= 'a' && c <= 'z')
-		{
-			str[i] = 'a' + ((c - 'a' + 13) % 26);
-		}
-		else if (c >= 'A' && c <= 'Z')
-		{
-			str[i] = 'A' + ((c - 'A' + 13) % 26);
+				/* Break out of the inner loop once a match is found */
+				break;
+			}
 		}
 	}
 
