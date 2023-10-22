@@ -13,6 +13,12 @@ void print_buffer(char *b, int size)
 {
 	int position, index;
 
+	if (size <= 0)
+	{
+		printf("\n");
+		return;
+	}
+
 	for (position = 0; position < size; position += 10)
 	{
 		printf("%08x: ", position);
@@ -32,20 +38,11 @@ void print_buffer(char *b, int size)
 		{
 			if ((index + position) >= size)
 				break;
-			else if (*(b + index + position) >= 31 && *(b + index + position) <= 126)
+			else if (isprint(*(b + index + position)))
 				printf("%c", *(b + index + position));
 			else
 				printf(".");
 		}
-
-		if (position >= size)
-			continue;
-		printf("\n");
-
-	}
-
-	if (size <= 0)
-	{
 		printf("\n");
 	}
 }
