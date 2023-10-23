@@ -6,7 +6,7 @@
  * @s: string
  * @c: char to be located
  *
- * Return: pointer to @s 
+ * Return: pointer to @s
  */
 
 char *_strchr(char *s, char c)
@@ -27,5 +27,5 @@ char *_strchr(char *s, char c)
 		return (s);
 	}
 
-	return NULL;
+	return (NULL);
 }
