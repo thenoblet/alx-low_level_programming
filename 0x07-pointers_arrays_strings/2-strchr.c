@@ -6,19 +6,26 @@
  * @s: string
  * @c: char to be located
  *
- * Return: pointer to @s
+ * Return: pointer to @s 
  */
 
 char *_strchr(char *s, char c)
 {
+
 	while (*s != '\0')
 	{
 		if (*s == c)
 		{
+			/* return pointer to matched char */
 			return (s);
 		}
 		s++;
 	}
 
-	return (NULL);
+	if (c == '\0')
+	{
+		return (s);
+	}
+
+	return NULL;
 }
