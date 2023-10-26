@@ -16,15 +16,18 @@ int wildcmp(char *s1, char *s2)
 	if (*s2 == '*' && *(s2 + 1) != '\0' && *s1 == '\0')
 	{
 		return (0); /* No match if '*' at the end of s2 and s1 is empty. */
-	}
+	} 
+
 	if (*s1 == '\0' && *s2 == '\0')
 	{
-		return (1); /* They match if both strings are empty. */
+		return (1); /*match if we get to the end both strings. */
 	}
+
 	if (*s1 == *s2)
 	{
 		return (wildcmp(s1 + 1, s2 + 1)); /* Continue checking if chars match. */
 	}
+
 	if (*s2 == '*')
 	{
 		/* Check with '*' as a wildcard. */
