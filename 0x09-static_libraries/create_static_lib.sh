@@ -1,7 +1,7 @@
 #!/bin/bash
 # generating object files
-gcc -std=gnu89 -c *.c
+gcc -c *.c
 # creates the static libary
-ar rc liball.a *.o #OR ar rcs liball.a *.o
+ar rc liball.a *.o
 # indexing created library 
 ranlib liball.a
