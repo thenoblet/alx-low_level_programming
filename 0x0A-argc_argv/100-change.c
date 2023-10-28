@@ -48,6 +48,12 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
+/**
+ * countCoins - counts coins/change
+ * @cents: input
+ *
+ * Return: sum of coins
+ */
 
 int countCoins(int cents)
 {
@@ -66,17 +72,22 @@ int countCoins(int cents)
 	cents = cents - nickels * NICKEL;
 
 	/* Calculate the number of pennies to give */
-	pennies = calculate_pennies(cents);
-	cents = cents - pennies * PENNY;
-
-	/* Calculate the number of two pennies to give */
 	twoPennies = calculate_twoPennies(cents);
 	cents = cents - twoPennies * TWO_PENNIES;
 
-	return (quarters + dimes + nickels + pennies + twoPennies);
+	/* Calculate the number of two pennies to give */
+	pennies = calculate_pennies(cents);
+	cents = cents - pennies * PENNY;
+
+	return (quarters + dimes + nickels + twoPennies + pennies);
 }
 
-
+/**
+ * calculate_quarters - counts quarters
+ * @cents: amount of cents
+ *
+ * Return: number of quarters
+ */
 
 int calculate_quarters(int cents)
 {
