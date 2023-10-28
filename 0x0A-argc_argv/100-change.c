@@ -8,12 +8,14 @@
 #define TWO_PENNIES 2
 #define PENNY 1
 
+/* helper functions */
 int calculate_quarters(int cents);
 int calculate_dimes(int cents);
 int calculate_nickels(int cents);
 int calculate_pennies(int cents);
 int calculate_twoPennies(int cents);
 int countCoins(int cents);
+
 
 /**
  * main - prints the minimum number of coins to make change
@@ -41,18 +43,19 @@ int main(int argc, char *argv[])
 		printf("0\n");
 		return (-1);
 	}
-	
+
 	coins = countCoins(cents);
 	printf("%d\n", coins);
 
 	return (0);
 }
 
+
 /**
  * countCoins - counts coins/change
  * @cents: input
  *
- * Return: sum of coins
+ * Return: minimum number of coins to make change for an amount of money
  */
 
 int countCoins(int cents)
@@ -82,13 +85,14 @@ int countCoins(int cents)
 	return (quarters + dimes + nickels + twoPennies + pennies);
 }
 
+
+
 /**
  * calculate_quarters - counts quarters
  * @cents: amount of cents
  *
  * Return: number of quarters
  */
-
 int calculate_quarters(int cents)
 {
 	int quarters = 0;
@@ -101,6 +105,12 @@ int calculate_quarters(int cents)
 	return (quarters);
 }
 
+/**
+ * calculate_dimes - counts dimes
+ * @cents: amount of cents
+ *
+ * Return: number of dimes
+ */
 int calculate_dimes(int cents)
 {
 	int dimes = 0;
@@ -113,6 +123,12 @@ int calculate_dimes(int cents)
 	return (dimes);
 }
 
+/**
+ * calculate_nickels - counts nickels
+ * @cents: amount of cents
+ *
+ * Return: number of nickels
+ */
 int calculate_nickels(int cents)
 {
 	int nickels = 0;
@@ -125,6 +141,12 @@ int calculate_nickels(int cents)
 	return (nickels);
 }
 
+/**
+ * calculate_twoPennies - counts two pennies
+ * @cents: amount of cents
+ *
+ * Return: number of two pennies
+ */
 int calculate_twoPennies(int cents)
 {
 	int twoPennies = 0;
@@ -137,6 +159,12 @@ int calculate_twoPennies(int cents)
 	return (twoPennies);
 }
 
+/**
+ * calculate_pennies - counts pennies
+ * @cents: amount of cents
+ *
+ * Return: number of pennies
+ */
 int calculate_pennies(int cents)
 {
 	int pennies = 0;
