@@ -16,7 +16,6 @@ int calculate_pennies(int cents);
 int calculate_twoPennies(int cents);
 int countCoins(int cents);
 
-
 /**
  * main - prints the minimum number of coins to make change
  *
@@ -64,23 +63,23 @@ int countCoins(int cents)
 
 	/* Calculate the number of quarters to give */
 	quarters = calculate_quarters(cents);
-	cents = cents - quarters * QUARTER;
+	cents -= quarters * QUARTER;
 
 	/* Calculate the number of dimes to give */
 	dimes = calculate_dimes(cents);
-	cents = cents - dimes * DIME;
+	cents -= dimes * DIME;
 
 	/* Calculate the number of nickels to give */
 	nickels = calculate_nickels(cents);
-	cents = cents - nickels * NICKEL;
+	cents -= nickels * NICKEL;
 
 	/* Calculate the number of pennies to give */
 	twoPennies = calculate_twoPennies(cents);
-	cents = cents - twoPennies * TWO_PENNIES;
+	cents -= twoPennies * TWO_PENNIES;
 
 	/* Calculate the number of two pennies to give */
 	pennies = calculate_pennies(cents);
-	cents = cents - pennies * PENNY;
+	cents -= pennies * PENNY;
 
 	return (quarters + dimes + nickels + twoPennies + pennies);
 }
