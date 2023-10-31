@@ -18,6 +18,9 @@ char *_strdup(char *str)
 	/* Create a temporary pointer to keep original string unchanged */
 	char *temp = str;
 
+	if (str == NULL)
+		return (NULL);
+
 	while (*temp)
 	{
 		temp++;
@@ -26,7 +29,7 @@ char *_strdup(char *str)
 	size += 1; /* Add 1 for the null terminator */
 
 	s = (char *)malloc(size * sizeof(char));
-	if (s == NULL || str == NULL)
+	if (s == NULL)
 	{
 		return (NULL);
 	}
