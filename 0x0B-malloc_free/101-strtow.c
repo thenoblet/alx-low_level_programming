@@ -3,7 +3,6 @@
 /* helper functions */
 int countwords(const char *str);
 char *copyword(const char *str, int start, int end);
-void free_strtow(char **words);
 
 /**
  * strtow - Split a string into words.
@@ -112,15 +111,4 @@ char *copyword(const char *str, int start, int end)
 	word[length] = '\0'; /*  Null-terminate word */
 
 	return (word);
-}
-
-
-void free_strtow(char **words)
-{
-    int i;
-
-    for (i = 0; words[i] != NULL; i++)
-        free(words[i]);
-
-    free(words);
 }
