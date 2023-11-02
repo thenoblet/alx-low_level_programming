@@ -1,5 +1,7 @@
 #include "main.h"
 
+int _strlen(char *s);
+
 /**
  * string_nconcat - concatenate two strings
  *
@@ -14,7 +16,7 @@
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *newString;
-	size_t s2_len, total_len;
+	size_t s2_len, s1_len, total_len;
 	unsigned int i, j;
 
 	if (s1 == NULL)
@@ -26,11 +28,12 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	}
 
 	/* Calc. length of s2 or limit it to 'n' chars */
-	s2_len = strlen(s2);
+	s2_len = _strlen(s2);
+	s1_len = _strlen(s1);
 	if (n < s2_len)
 		s2_len = n;
 
-	total_len = strlen(s1) + s2_len;
+	total_len = _strlen(s1) + s2_len;
 	newString = malloc(sizeof(char) * (total_len + 1));
 	if (newString == NULL)
 	{
@@ -38,7 +41,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	}
 
 	i = 0;
-	while (i < strlen(s1))
+	while (i < s1_len)
 	{
 		newString[i] = s1[i];
 		++i;
@@ -53,4 +56,25 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	newString[i + j] = '\0';
 
 	return (newString);
+}
+
+
+/**
+ * _strlen - returns the length of a string
+ *
+ * @s: parameter
+ *
+ * Return: length of a string
+ */
+
+int _strlen(char *s)
+{
+	int count = 0;
+
+	while (*s != '\0')
+	{
+		s++;
+		count++;
+	}
+	return (count);
 }
