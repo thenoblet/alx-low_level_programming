@@ -20,7 +20,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	unsigned int i, j;
 
 	if (s1 == NULL)
+	{
 		s1 = "";
+	}
 
 	if (s2 == NULL)
 	{
@@ -30,8 +32,8 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	/* Calc. length of s2 or limit it to 'n' chars */
 	s2_len = _strlen(s2);
 	s1_len = _strlen(s1);
-	if (n < s2_len)
-		s2_len = n;
+	if (n >= s2_len)
+		n = s2_len;
 
 	total_len = s1_len + s2_len;
 	newString = malloc(sizeof(char) * (total_len + 1));
@@ -40,13 +42,18 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		return (NULL);
 	}
 
-	for (i = 0; i < s1_len; i++)
+	i = 0;
+	while (i < s1_len)
 	{
 		newString[i] = s1[i];
+		++i;
 	}
-	for (j = 0; j < n; j++)
+
+	j = 0;
+	while (j < n)
 	{
 		newString[i + j] = s2[j];
+		++j;
 	}
 	newString[i + j] = '\0';
 
