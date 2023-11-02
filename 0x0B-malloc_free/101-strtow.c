@@ -3,19 +3,20 @@
 /* helper functions */
 int countwords(const char *str);
 char *copyword(const char *str, int start, int end);
+void free_strtow(char **words);
 
 /**
  * strtow - Split a string into words.
  * @str: The input string to split.
  *
- * Return: An array of words, terminated by a NULL pointer.
+i * Return: An array of words, terminated by a NULL pointer.
  */
 
 char **strtow(char *str)
 {
 	char **words;
 	int numwords, i, j;
-	int start = 0, end, index = 0;
+	int start = 0, end = 0, index = 0, length;
 
 	if (str == NULL || *str == '\0')
 		return (NULL); /* Handle invalid input */
@@ -26,18 +27,18 @@ char **strtow(char *str)
 
 	words = (char **)malloc((numwords + 1) * sizeof(char *));
 	if (words == NULL)
-		return (NULL); /* memory allocation failure */
-
-	for (i = 0; str[i] != '\0'; ++i)
 	{
-		if (!isspace(str[i]))
-		{
-			start = i; /* mark the start of a word */
-			while (str[i] && !isspace(str[i]))
-				i++;
+		free(words);
+		return (NULL); /* memory allocation failure */
+	}
 
-			end = i - 1;
-			/* Copy the word and store it in the array */
+	length = strlen(str);
+
+	for (i = 0; i < length; i++)
+	{
+		if (!isspace(str[i]) && (isspace(str[i + 1]) || str[i + 1] == '\0'))
+		{
+			end = i + 1;
 			words[index] = copyword(str, start, end);
 			if (words[index] == NULL)
 			{
@@ -48,9 +49,13 @@ char **strtow(char *str)
 			}
 			index++;
 		}
-
+		else if (!isspace(str[i]) && !isspace(str[i + 1]))
+			continue;
+		else
+			start = i + 1;
 	}
-	words[index] = NULL; /* Terminate array with a NULL pointer */
+	words[index] = NULL;
+
 	return (words);
 }
 
@@ -96,7 +101,7 @@ int countwords(const char *str)
 char *copyword(const char *str, int start, int end)
 {
 	char *word;
-	int length = end - start + 1; /* Calc. length of the word */
+	int length = end - start; /* Calc. length of the word */
 
 	word = (char *)malloc((length + 1) * sizeof(char));
 	if (word == NULL)
@@ -107,4 +112,15 @@ char *copyword(const char *str, int start, int end)
 	word[length] = '\0'; /*  Null-terminate word */
 
 	return (word);
+}
+
+
+void free_strtow(char **words)
+{
+    int i;
+
+    for (i = 0; words[i] != NULL; i++)
+        free(words[i]);
+
+    free(words);
 }
