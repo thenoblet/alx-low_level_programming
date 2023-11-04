@@ -1,78 +1,134 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include "main.h"
 
-/* helper funnctions */
-int is_positive_integer(const char *str);
-int multiply(int num1, int num2);
+/* helper functions */
+char *multiply(char *firstNum, char *secondNum);
+int _strlen(char *s);
 
 
 /**
- * main - Program entry point.
+ * main - Entry point of the program.
+ *
  * @argc: The number of command-line arguments.
  * @argv: An array of command-line argument strings.
  *
- * Return: 0 on success, 98 on error.
+ * Return: 0 on success, 98 for errors.
  */
 
-int main(int argc, char *argv[]) 
+int main(int argc, char *argv[])
 {
-    if (argc != 3) 
-    {
-        printf("Error\n");
-        return (98);
-    }
+	char *result, *firstNum, *secondNum;
+	unsigned int i, j, n, m;
+	int index;
 
-    char *num1_str = argv[1];
-    char *num2_str = argv[2];
+	if (argc != 3)
+	{
+		printf("Error\n");
+		exit(98);
+	}
 
-    if (!is_positive_integer(num1_str) || !is_positive_integer(num2_str)) 
-    {
-        printf("Error\n");
-        return 98;
-    }
+	firstNum = argv[1];
+	secondNum = argv[2];
 
-    int num1 = atoi(num1_str);
-    int num2 = atoi(num2_str);
+	for (i = 0, n = _strlen(firstNum); i < n; ++i)
+	{
+		if (!isdigit(firstNum[i]))
+		{
+			printf("Error\n");
+			exit(98); /* exit, first number contains non-digit chars */
+		}
+	}
 
-    int result = multiply(num1, num2);
+	for (j = 0, m = _strlen(secondNum); j < m; ++j)
+	{
+		if (!isdigit(secondNum[j]))
+		{
+			printf("Error\n");
+			exit(98); /* exit, first number contains non-digit chars */
+		}
+	}
+	result = multiply(firstNum, secondNum);
+	/* resultLen = _strlen(result); */
 
-    printf("%d\n", result);
+	/* Find the position of the first non-zero digit */
+	index = 0;
+	while (result[index] == '0' && result[index + 1] != '\0')
+	{
+		index++;
+	}
 
-    return 0;
+	/* Print the result from the first non-zero digit onwards */
+	printf("%s\n", result + index);
+	free(result);
+
+	return (0);
 }
 
 
 /**
- * multiply - Multiply two integers.
- * @num1: The first integer.
- * @num2: The second integer.
+ * multiply - Multiply two positive numbers represented as strings.
  *
- * Return: The result of the multiplication.
+ * @firstNum: The first number.
+ * @secondNum: The second number.
+ *
+ * Return: The result of multiplication.
  */
 
-int multiply(int num1, int num2) 
+char *multiply(char *firstNum, char *secondNum)
 {
-    return (num1 * num2);
+	char *result;
+	int i, j, l;
+	int product, carry;
+
+	int firstNumLen = _strlen(firstNum);
+	int secondNumLen = _strlen(secondNum);
+	int resultLen = firstNumLen + secondNumLen;
+
+	result = malloc(sizeof(char) * (resultLen + 1));
+	if (result == NULL)
+	{
+		exit(98); /* memory alloc failed*/
+	}
+
+	/* Initialize result array with '0's */
+	for (i = 0; i < resultLen; ++i)
+	{
+		result[i] = '0';
+	}
+	result[resultLen] = '\0';
+
+	for (j = firstNumLen - 1; j >= 0; --j)
+	{
+		carry = 0;
+		for (l = secondNumLen - 1; l >= 0; --l)
+		{
+			/* Calc. product and update carry */
+			product = ((firstNum[j] - '0') * (secondNum[l] - '0') +
+					(result[j + l + 1] - '0') + carry);
+			carry = product / 10;
+			result[j + l + 1] = ((product % 10) + '0'); /* Update the result */
+		}
+		result[j] += carry; /*  Update result with final carry */
+	}
+	return (result);
 }
 
 
 /**
- * is_positive_integer - Check if a string contains only positive integers.
- * @str: The string to check.
+ * _strlen - returns the length of a string
  *
- * Return: 1 if the string contains only digits, 0 otherwise.
+ * @s: parameter
+ *
+ * Return: length of a string
  */
 
-int is_positive_integer(const char *str) 
+int _strlen(char *s)
 {
-    while (*str) 
-    {
-        if (!isdigit(*str)) 
-	    {
-            return (0);
-        }
-        str++;
-    }
-    return (1);
+	int count = 0;
+
+	while (*s != '\0')
+	{
+		s++;
+		count++;
+	}
+	return (count);
 }
