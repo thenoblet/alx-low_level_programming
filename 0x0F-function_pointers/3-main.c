@@ -1,9 +1,5 @@
 #include "3-calc.h"
 
-/* Define a function pointer type for operations */
-typedef int (*ptrOperation)(int, int);
-
-
 /**
  * main - Entry point for a simple calculator program.
  *
@@ -21,7 +17,8 @@ int main(int argc, char *argv[])
 
 	int a, b, result;
 	char *operator;
-	ptrOperation operation;
+	
+	int (*operation)(int, int);
 
 	/* Check the number of command line arguments */
 	if (argc != 4)
