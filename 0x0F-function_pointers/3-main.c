@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 	int a, b, result;
 	char *operator;
-	
+
 	int (*operation)(int, int);
 
 	/* Check the number of command line arguments */
