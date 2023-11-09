@@ -15,5 +15,8 @@
 void print_name(char *name, void (*f)(char *))
 {
 	/* Call the custom print func. (pointed to by f) with name as argument */
-	f(name);
+	if (name && f != NULL)
+	{
+		f(name);
+	}
 }
