@@ -10,15 +10,6 @@ char *_memcpy(char *dest, char *src, unsigned int n);
  * @old_size: size of the old memory block
  * @new_size: size of the new memory block
  *
- * Description: The _realloc() function changes the size of the memory block
- * pointed to by @old_mem_blk to @new_size bytes. The contents will be
- * unchanged in the range from the start of the region up to the minimum of the
- * old and new sizes. If the @new_size is larger than the @old_size, the added
- * memory will not be initialized. If @old_mem_blk is NULL, then the call is
- * equivalent to @malloc(@new_size), for all values of @old_size and @new_size;
- * if @new_size is equal to zero, and @old_mem_blk ptr is not NULL, then the
- * call is equivalent to free(@old_mem_blk).
- *
  * Return: a pointer to the newly allocated memory,
  * or NULL if the request failed
  */
