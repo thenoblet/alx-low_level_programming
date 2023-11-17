@@ -3,9 +3,10 @@
 /**
  * before_main - Constructor function that prints messages before main
  *
- * This function is designated as a constructor using the __attribute__((constructor))
- * attribute, which means it will be automatically called before the main function
- * during program startup. It prints two lines of text to the standard output.
+ * This function is designated as a constructor using the
+ * __attribute__((constructor)) attribute, which means it will be
+ * automatically called before the main function during program startup.
+ * It prints two lines of text to the standard output.
  */
 
 void __attribute__((constructor)) before_main(void)
