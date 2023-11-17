@@ -30,20 +30,18 @@ list_t *add_node_end(list_t **head, const char *str)
 	if (*head == NULL)
 	{
 		*head = new_node;
-		new_node->next = NULL;
-		return (new_node); /* Return address of the new element */
 	}
-
-	 /* Traverse the list to find the last node */
-	current = *head;
-	while (current->next != NULL)
+	else
 	{
-		current = current->next;
+		/* Traverse the list to find the last node */
+		current = *head;
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		 /* Add the new node at the end of the list */
+		current->next = new_node;
 	}
-
-	/* Add the new node at the end of the list */
-	current->next = new_node;
-	new_node = NULL;
 
 	return (new_node);
 }
