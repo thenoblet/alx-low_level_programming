@@ -30,7 +30,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	newNode->next = NULL;
 
 	/* Special case: Insert at the beginning */
-	if (n == 0 || n == 1)
+	if (n == 0)
 	{
 		newNode->next = *head;
 		*head = newNode;
@@ -41,19 +41,15 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	current = *head;
 	for (i = 0; i < Nth && current != NULL; i++)
 	{
+		if (current == NULL)
+		{
+			free(newNode);
+			return(NULL);
+		}
 		current = current->next;
 	}
-
-	/* Check if the index is out of bounds */
-	if (current == NULL)
-	{
-		free(newNode);
-		return (NULL);
-	}
-
 	 /* Insert the new node into the list */
 	newNode->next = current->next;
 	current->next = newNode;
-
 	return (newNode);
 }
