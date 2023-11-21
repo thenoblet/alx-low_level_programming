@@ -30,7 +30,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	newNode->next = NULL;
 
 	/* Special case: Insert at the beginning */
-	if (n == 0)
+	if (n == 0 || n == 1)
 	{
 		newNode->next = *head;
 		*head = newNode;
