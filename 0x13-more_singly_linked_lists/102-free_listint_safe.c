@@ -24,23 +24,18 @@ size_t free_listint_safe(listint_t **head)
 		return (0);
 	}
 
-	for (; ; count++)
+	while (1)
 	{
-		 /* Save the next node before freeing the current one */
 		current = (*head)->next;
-		free(*head);  /* Free the current node */
+		free(*head);
+		count++;
 
-		/*
-		 * check if the next node is NULL or if the address of the current
-		 * head is less than or equal to the next node. If true, set head to
-		 * NULL and return the count.
-		 */
 		if (current == NULL || *head <= current)
 		{
 			*head = 0;
 			return (count);
 		}
-
-		*head = current; /* Move the head pointer to the next node */
+		*head = current;
 	}
+
 }
