@@ -39,13 +39,14 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 
 	/* Traverse the list to find the node before the desired index */
 	current = *head;
+	if (current == NULL)
+	{
+		free(newNode);
+		return (NULL);
+	}
+
 	for (i = 0; i < Nth && current != NULL; i++)
 	{
-		if (current == NULL)
-		{
-			free(newNode);
-			return(NULL);
-		}
 		current = current->next;
 	}
 	 /* Insert the new node into the list */
