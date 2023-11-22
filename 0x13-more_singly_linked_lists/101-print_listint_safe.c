@@ -33,10 +33,13 @@ size_t print_listint_safe(const listint_t *head)
 		nodeCount++;
 
 		/* Check for a loop in the linked list */
-		if (current->next >= current)
+		if (current->next >= current || current->next == NULL)
 		{
-			 /* Print node after loop */
-			printf("-> [%p] %d\n", (void *)current->next, current->next->n);
+			if (current->next)
+			{
+				/* Print node after loop */
+				printf("-> [%p] %d\n", (void *)current->next, current->next->n);
+			}
 			break; /* Break the loop if a loop is detected */
 		}
 	}
