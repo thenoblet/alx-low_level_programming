@@ -37,22 +37,22 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		return (newNode);
 	}
 
+	/* Traverse the list to find the node before the desired index */
 	current = *head;
-	if (current == NULL)
+	for (i = 0; current != NULL; i++)
 	{
-		free(newNode);
-		return (NULL);
-	}
-
-	 /* Traverse the list to find the node before the desired index */
-	for (i = 0; i < Nth && current != NULL; i++)
-	{
+		if (i == Nth)
+		{
+			/* Insert the new node into the list */
+			newNode->next = current->next;
+			current->next = newNode;
+			return (newNode);
+		}
 		current = current->next;
 	}
 
-	 /* Insert the new node into the list */
-	newNode->next = current->next;
-	current->next = newNode;
+	free(newNode);
+	newNode = NULL;
 
-	return (newNode);
+	return (NULL);
 }
