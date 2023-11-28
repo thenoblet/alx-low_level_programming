@@ -43,13 +43,6 @@ int main(int argc, char *argv[])
 	/* Copy the content from file_from to file_to */
 	copy(fd_from, fd_to, buffer, argv[1], argv[2]);
 
-	/* Close the file descriptors */
-	if (close(fd_from) == -1 || close(fd_to) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close file descriptor\n");
-		exit(100);
-	}
-
 	return (0);
 }
 
@@ -84,6 +77,8 @@ void copy(int fd_from, int fd_to, char *buffer, const char *src,
 		{
 			/* write operation fails, print an error message */
 			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", dest);
+			close(fd_from);
+			close(fd_to);
 			exit(99); /* exit with an appropriate error code */
 		}
 	}
@@ -92,7 +87,11 @@ void copy(int fd_from, int fd_to, char *buffer, const char *src,
 	if (bytes_read == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src);
+		close(fd_from);
+		close(fd_to);
 		exit(98);
 	}
 
+	close(fd_from);
+	close(fd_to);
 }
