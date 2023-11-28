@@ -80,7 +80,7 @@ void copy(int fd_from, int fd_to, char *buffer, const char *src,
 		bytes_written = write(fd_to, buffer, bytes_read);
 
 		/* Check for a write error */
-		if (bytes_written != bytes_read)
+		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
 			/* write operation fails, print an error message */
 			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", dest);
