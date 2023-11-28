@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	}
 
 	/* Open or create the destination file for writing, truncate if it exists */
-	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 664);
+	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
@@ -73,7 +73,7 @@ void copy(int fd_from, int fd_to, char *buffer, const char *src,
 		bytes_written = write(fd_to, buffer, bytes_read);
 
 		/* Check for a write error */
-		if (bytes_written != bytes_read)
+		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
 			/* write operation fails, print an error message */
 			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", dest);
