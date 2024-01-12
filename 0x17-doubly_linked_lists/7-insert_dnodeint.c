@@ -27,7 +27,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	new_node->prev = NULL;
 	new_node->next = NULL;
 
-	if (*h == NULL)
+	if (*h == NULL || idx == 0)
 	{
 		/* If the list is empty, set the new node as the head */
 		*h = new_node;
@@ -50,5 +50,8 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		current = current->next;
 	}
 
+	/* If the loop completes, the index is invalid */
+	free(new_node);
+	new_node = NULL;
 	return (NULL);
 }
