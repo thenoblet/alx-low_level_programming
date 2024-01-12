@@ -16,48 +16,37 @@
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *new_node, *current;
-	size_t node_count = 0;
+	dlistint_t *current = *h, *new_node;
 
-	new_node = malloc(sizeof(dlistint_t));
-	if (new_node == NULL)
-		return (NULL);
+	if ((!*h && idx) || !h)
+		return (0);
 
-	new_node->n = n;
-	new_node->prev = NULL;
-	new_node->next = NULL;
-
-	if (*h == NULL && idx == 0)
+	while (idx > 1)
 	{
-		/* If the list is empty, set the new node as the head */
-		*h = new_node;
-		return (new_node);
-	}
-
-	if (*h == NULL || idx < node_count)
-	{
-		free(new_node);
-		return (NULL);
-	}
-
-	current = *h;
-	while (current != NULL)
-	{
-		if (node_count == (idx - 1))
-		{
-			new_node->next = current->next;
-			current->next = new_node;
-			new_node->prev = current;
-			if (new_node->next != NULL)
-				new_node->next->prev = new_node;
-			return (new_node);
-		}
-		node_count++;
 		current = current->next;
+		if (!current)
+			return (0);
+		idx--;
 	}
-
-	/* If the loop completes, the index is invalid */
-	free(new_node);
-	new_node = NULL;
-	return (NULL);
+	new_node = malloc(sizeof(dlistint_t));
+	if (!new_node)
+		return (0);
+	if (!idx)
+	{
+		new_node->prev = NULL;
+		if (current)
+			current->prev = new_node;
+		*h = new_node;
+		new_node->next = current;
+	}
+	else
+	{
+		new_node->next = current->next;
+		if (current->next)
+			current->next->prev = new_node;
+		current->next = new_node;
+		new_node->prev = current;
+	}
+	new_node->n = n;
+	return (new_node);
 }
