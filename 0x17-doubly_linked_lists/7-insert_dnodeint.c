@@ -27,11 +27,17 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	new_node->prev = NULL;
 	new_node->next = NULL;
 
-	if (*h == NULL || idx == 0)
+	if (*h == NULL && idx == 0)
 	{
 		/* If the list is empty, set the new node as the head */
 		*h = new_node;
 		return (new_node);
+	}
+
+	if (*h == NULL || idx < node_count)
+	{
+		free(new_node);
+		return (NULL);
 	}
 
 	current = *h;
