@@ -21,29 +21,36 @@ int advanced_binary(int *array, size_t size, int value)
 /**
 * recursive_search - Recursive version of binary search.
 * @array: Pointer to the first element of the array to search in.
-* @left: Index of first element of portion of array to search in.
-* @right: Index of last element of portion of array to search in.
+* @low: Index of first element of portion of array to search in.
+* @high: Index of last element of portion of array to search in.
 * @value: Value to search for.
 * Return: First index where value is located or -1 if not.
 */
-int recursive_search(int *array, int left, int right, int value)
+int recursive_search(int *array, int value,
+			    size_t low, size_t high)
 {
-	int i, mid;
+	size_t mid, i;
 
-	printf("Searching in array: ");
-	for (i = left; i < right; i++)
-		printf("%d, ", array[i]);
-	printf("%d\n", array[i]);
-	mid = (right + left) / 2;
-	if (array[mid] == value && (left == right || mid == left || array[mid - 1] <
-					value))
-		return (mid);
-	if (left >= right)
+	if (!array)
 		return (-1);
-	if (array[mid] < value)
-		return (recursive_search(array, mid + 1, right, value));
-	if (array[mid] > value)
-		return (recursive_search(array, left, mid - 1, value));
-	else
-		return (recursive_search(array, left, mid, value));
+
+	mid = (low + high) / 2;
+	printf("Searching in array: ");
+	for (i = low; i <= high; i++)
+		printf("%i%s", array[i], i == high ? "\n" : ", ");
+
+	if (array[low] == value)
+		return ((int)low);
+
+	if (array[low] != array[high])
+	{
+		if (array[mid] < value)
+			return (binary_search_recursion(array, value,
+							mid + 1, high));
+		if (array[mid] >= value)
+			return (binary_search_recursion(array, value,
+							low, mid));
+	}
+
+	return (-1);
 }
