@@ -45,10 +45,10 @@ int recursive_search(int *array, int value,
 	if (array[low] != array[high])
 	{
 		if (array[mid] < value)
-			return (binary_search_recursion(array, value,
+			return (recursive_search(array, value,
 							mid + 1, high));
 		if (array[mid] >= value)
-			return (binary_search_recursion(array, value,
+			return (recursive_search(array, value,
 							low, mid));
 	}
 
